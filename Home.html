@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilshan Hewasandara | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-bg: #0d0118;
+            --purple-glow: #9d4edd;
+            --purple-deep: #240046;
+            --text-main: #ffffff;
+            --text-dim: #b0b0b0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Smooth scrolling for internal links */
+            scroll-behavior: smooth;
+            /* Hide default cursor for mouse animation */
+            cursor: none;
+        }
+
+        /* Mouse Animation Styles */
+        #cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--purple-glow);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            box-shadow: 0 0 15px var(--purple-glow), 0 0 30px var(--purple-glow);
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        #cursor-follower {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--purple-glow);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.15s ease-out;
+        }
+
+        /* --- Horizontal Scrolling Text Animations --- */
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .scrolling-text-container {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            z-index: 1; 
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            opacity: 0.15;
+        }
+
+        .scroll-row {
+            display: flex;
+            white-space: nowrap;
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 20px;
+            color: transparent;
+            -webkit-text-stroke: 2px white;
+            line-height: 1;
+        }
+
+        .scroll-left { animation: scrollLeft 25s linear infinite; }
+        .scroll-right { animation: scrollRight 25s linear infinite; }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeIn 0.8s ease-out forwards; }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+            background: #240046;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            z-index: 10;
+        }
+        nav a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; cursor: none; }
+        nav a:hover { opacity: 1; color: var(--purple-glow); }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at top, #3c096c 0%, var(--dark-bg) 80%);
+            position: relative; 
+            overflow: hidden;
+        }
+        
+        /* Updated Hero Image for Smoother Hover */
+        .hero img { 
+            width: 700px; 
+            border-radius: 10px; 
+            margin-bottom: 0px; 
+            position: relative; 
+            z-index: 2; 
+            /* Added smooth transition property */
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
+        }
+
+        .hero img:hover { 
+            /* Added subtle scale and rotation */
+            transform: scale(1.03) rotate(0.5deg); 
+        }
+
+        .hero h1 { font-size: 8rem; margin: 0; letter-spacing: 10px; font-weight: 300; position: relative; z-index: 2;}
+        .hero h2 { font-size: 2rem; color: var(--purple-glow); letter-spacing: 3px; margin-top: -50px; position: relative; z-index: 2;}
+        .hero-bio { max-width: 800px; margin: 30px auto; font-size: 0.85rem; color: var(--text-dim); text-align: center; position: relative; z-index: 2;}
+
+        /* Layout Blocks */
+        .container { max-width: 1000px; margin: auto; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 2.2rem; margin: 50px 0 10px; }
+        .section-subtitle { text-align: center; color: var(--text-dim); font-size: 0.9rem; margin-bottom: 40px; }
+
+        /* Experience */
+        .exp-box {
+            background: linear-gradient(145deg, #160628, #0d0118);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid #240046;
+        }
+        .exp-text { flex: 2; }
+        .exp-text h4 { color: var(--purple-glow); margin: 0; }
+        .exp-text ul { font-size: 0.85rem; color: var(--text-dim); padding-left: 20px; }
+        .exp-img { flex: 1; min-width: 200px;  border-radius: 15px; height: 280px; }
+
+        /* Projects Grid */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        
+        .card { background: #11031f; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; display: block; text-decoration: none; color: inherit; cursor: none;}
+        .card:hover { transform: translateY(-10px); border: 1px solid var(--purple-glow); }
+        .card img { width: 100%; height: auto; display: block; }
+        .card-tag { background: #5a189a; font-size: 0.75rem; padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 15px 0; }
+        .card-desc { font-size: 0.75rem; color: var(--text-dim); padding: 0 15px; margin-bottom: 15px; }
+        .card-meta { font-size: 0.7rem; color: var(--purple-glow); text-align: left; padding: 0 15px; }
+
+        /* Web Designs */
+        .web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .web-bottom { width: 60%; margin: auto; }
+
+        /* Contact */
+        .contact { text-align: center; padding: 80px 20px; }
+        .social-row { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+        .icon-btn { width: 45px; height: 45px; background: #1a0a2e; border: 1px solid #3c096c; border-radius: 10px; color: var(--purple-glow); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; cursor: none;}
+        .icon-btn:hover { background: var(--purple-glow); color: white; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .web-grid { grid-template-columns: 1fr; }
+            .web-bottom { width: 100%; }
+            .scroll-row { font-size: 4rem; }
+            #cursor, #cursor-follower { display: none; }
+            body { cursor: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mouse Animation Elements -->
+    <div id="cursor"></div>
+    <div id="cursor-follower"></div>
+
+    <nav>
+        <a href="#about-me">About Me</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="hero" id="about-me">
+        <!-- Horizontal Scrolling Text Background -->
+        <div class="scrolling-text-container">
+            <div class="scroll-row scroll-left">
+                FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER
+            </div>
+            <div class="scroll-row scroll-right">
+                FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER
+            </div>
+            <div class="scroll-row scroll-left">
+                FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER
+            </div>
+        </div>
+
+        <img src="img1.png" alt="Profile Image">
+        <div class="animate">
+            <h1>DILSHAN</h1>
+            <h2>HEWABANDARA</h2>
+            <div class="hero-bio">
+                I am an undergraduate specializing in Software Technology at South Eastern University, with a strong passion for UI/UX design and mobile application development. I enjoy creating clean, modern, and user-friendly digital experiences that solve real-world problems.
+I have hands-on experience as a UI/UX Engineer at Lakmini International, along with freelance work where I have designed and developed mobile and web applications. My work focuses on understanding user needs, designing intuitive interfaces, and ensuring smooth user journeys.
+I am skilled in tools such as Figma and Adobe XD, and I also have development experience in HTML, CSS, JavaScript, React, and Flutter. In addition to my technical work, I run a YouTube channel focused on music as a hobby, which reflects my creativity and passion beyond technology.
+This combination allows me to design solutions that are not only visually appealing but also technically practical. I am continuously learning, improving my design thinking, and exploring new technologies to build better digital products.
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Experience Section -->
+        <h3 class="section-title" id="experience">Experience</h3>
+        <div class="exp-box">
+            <div class="exp-text">
+                <h4>UI/UX Engineer at Lakmini International</h4>
+                <p style="font-size: 0.75rem; color: #666;">May 2021 - Present</p>
+                <ul>
+                    <li>Designed and developed user-friendly mobile application interfaces with a focus on usability and modern UI/UX standards</li>
+                    <li>Created wireframes, prototypes, and high-fidelity designs using Figma and Adobe XD</li>
+                    <li>Collaborated with developers and stakeholders to deliver functional and visually consistent applications</li>
+                    <li>Improved user flows and overall user experience based on feedback and testing
+Developed mobile applications using Android Studio, Firebase, and Flutter</li>
+                </ul>
+            </div>
+            <img src="img2.png" class="exp-img" alt="Experience Image">
+        </div>
+
+        <!-- Published Apps -->
+        <h3 class="section-title" id="projects">Projects</h3>
+        <p class="section-subtitle">Published Mobile Apps</p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-dim); max-width: 700px; margin: -20px auto 40px;">I have successfully published multiple applications on the Google Play Store, making them accessible to Android users worldwide. These apps include integrated Google Ads for effective monetization.</p>
+        
+        <div class="grid-3">
+            <a href="https://play.google.com/store/search?q=braita&c=apps" target="_blank" class="card">
+                <img src="img3.png" alt="Braita">
+                <div class="card-tag">Braita - Daily quiz challenge</div>
+                <p class="card-desc">A fun and engaging quiz app for all ages answer questions, test your knowledge, and earn exciting prizes!</p>
+                <div class="card-meta">
+                    • Languages: Flutter<br>• Published: Playstore<br>• Design: Figma
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.xendrio.leave_today" target="_blank" class="card">
+                <img src="img4.png" alt="Learn Today">
+                <div class="card-tag">Learn Today</div>
+                <p class="card-desc">This app provides long weekend suggestions and reminds users about vehicle license expiration</p>
+                <div class="card-meta">
+                    • Language: Flutter<br>• Published: Playstore<br>• Design: Figma
+                </div>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.xendrio.qapp" target="_blank" class="card">
+                <img src="img5.png" alt="Sri Lanka">
+                <div class="card-tag">No - Queue </div>
+                <p class="card-desc">This app allows users to check queue counts at public places such as banks and government offices</p>
+                <div class="card-meta">
+                    • Language: Java<br>• Published: Playstore<br>• Design: Figma
+                </div>
+            </a>
+        </div>
+
+        <!-- App Designs -->
+        <h3 class="section-title" style="font-size: 1.5rem; margin-top: 80px;">Mobile App Designs</h3>
+        <p class="section-subtitle">These are some of my mobile app UI/UX designs developed using Figma, showcasing my design skills and creativity in building user-friendly interfaces.</p>
+        
+        <div class="grid-4">
+            <a href="https://www.figma.com/proto/LRQJos8ym83afeucPFnSFl/Flingo?node-id=814-1302&p=f&t=cRV5Cp5MTGAXOMxX-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=814%3A1302&show-proto-sidebar=1" target="_blank" class="card"><img src="img6.png" alt="Design 1"><div class="card-tag">Flingo - Dating App</div></a>
+            <a href="https://www.figma.com/proto/9hS7hfwUr5kfUgE6f8KvNn/Parent-Pal?node-id=269-27177&p=f&t=w34SuZ5p4z2ka8jo-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=269%3A27177" target="_blank" class="card"><img src="img7.png" alt="Design 2"><div class="card-tag">Parent Pal</div></a>
+            <a href="https://www.figma.com/proto/ghynkEjFS5asyacz6q0rzz/Genie-Ai?node-id=1149-2738&p=f&t=7PZUhInefPLTKphg-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1149%3A2738&show-proto-sidebar=1" target="_blank" class="card"><img src="img8.png" alt="Design 3"><div class="card-tag">Genie - Ai Solution</div></a>
+            <a href="https://www.figma.com/proto/zzzFJxnpogs9VPeG3ClKGR/Ai-Vision?node-id=10-8&p=f&t=j4DMeDHDxmM6bFe7-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=10%3A8&show-proto-sidebar=1" target="_blank" class="card"><img src="img9.png" alt="Design 4"><div class="card-tag">Ai Vision</div></a>
+        </div>
+
+
+        <!-- Web Site Designs -->
+        <h3 class="section-title" style="font-size: 1.5rem; margin-top: 80px;">Web Site Designs</h3>
+        <p class="section-subtitle">These are some of my website UI/UX designs developed using Figma, showcasing my design skills and creativity in building user-friendly interfaces.</p>
+        
+        <div class="web-grid">
+            <a href="https://www.figma.com/proto/Bw0ShRQIJ4cMru8BEGsmrN/Untitled?node-id=1-2&p=f&t=u3xyvQvOh018NAqV-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A2" target="_blank">
+                <img src="img10.png" style="width: 100%; border-radius: 10px;" alt="Web 1">
+            </a>
+            <a href="https://www.figma.com/proto/IKKZxFpGppaw5Bg725N0A0/Supem-Sulagak?node-id=414-137&p=f&t=pyExnXFcLJrUfQrf-1&scaling=contain&content-scaling=fixed&page-id=0%3A1" target="_blank">
+                <img src="img11.png" style="width: 100%; border-radius: 10px;" alt="Web 2">
+            </a>
+        </div>
+        <div class="web-bottom">
+            <a href="https://www.figma.com/proto/ZOmRiv9vx4CkkyicshsSNU/ABC-PVT-LTD?node-id=4-2&p=f&t=38jRcCtU4FZaHpv6-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=4%3A2" target="_blank">
+                <img src="img12.png" style="width: 100%; border-radius: 10px;" alt="Web 3">
+            </a>
+        </div>
+
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <h3 class="section-title">Contacts</h3>
+<div class="social-row">
+    <!-- Phone -->
+    <a href="tel:075457862" class="icon-btn">
+        <i class="fas fa-phone"></i>
+    </a>
+    
+    <!-- WhatsApp -->
+    <a href="https://wa.me/94758155175" class="icon-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/dilshan-madumesha-89a6a6201/" class="icon-btn">
+        <i class="fab fa-linkedin-in"></i>
+    </a>
+    
+    <!-- Email -->
+    <a href="mailto:dilshanmadumesha175@gmail.com" class="icon-btn">
+        <i class="fas fa-envelope"></i>
+    </a>
+    
+    <!-- GitHub -->
+    <a href="https://github.com/dilshanM1" class="icon-btn">
+        <i class="fab fa-github"></i>
+    </a>
+    
+    <!-- YouTube -->
+    <a href="https://www.youtube.com/@pahasaratv" class="icon-btn">
+        <i class="fab fa-youtube"></i>
+    </a>
+</div>
+<!--            <p style="font-size: 0.75rem; color: #555;">dilshanmadumesha175@gmail.com</p> -->
+        </section>
+    </div>
+
+    <footer style="padding: 30px; text-align: center; border-top: 1px solid #1a0a2e; color: #333; font-size: 0.7rem;">
+        &copy; 2026 Dilshan Hewabandara. All Rights Reserved.
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        const follower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            follower.style.left = e.clientX + 'px';
+            follower.style.top = e.clientY + 'px';
+        });
+
+        // Hover effects for links
+        const links = document.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                follower.style.transform = 'translate(-50%, -50%) scale(2)';
+                follower.style.backgroundColor = 'rgba(157, 78, 221, 0.1)';
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.transform = 'translate(-50%, -50%) scale(1)';
+                follower.style.backgroundColor = 'transparent';
+            });
+        });
+    </script>
+
+</body>
+</html>
