@@ -119,24 +119,14 @@
             position: relative; 
             overflow: hidden;
         }
-        
-        /* Updated Hero Image for Smoother Hover */
         .hero img { 
             width: 700px; 
             border-radius: 10px; 
             margin-bottom: 0px; 
             position: relative; 
             z-index: 2; 
-            /* Added smooth transition property */
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            will-change: transform;
         }
-
-        .hero img:hover { 
-            /* Added subtle scale and rotation */
-            transform: scale(1.03) rotate(0.5deg); 
-        }
-
+        .hero img:hover { transform: scale(1.05) rotate(1deg); }
         .hero h1 { font-size: 8rem; margin: 0; letter-spacing: 10px; font-weight: 300; position: relative; z-index: 2;}
         .hero h2 { font-size: 2rem; color: var(--purple-glow); letter-spacing: 3px; margin-top: -50px; position: relative; z-index: 2;}
         .hero-bio { max-width: 800px; margin: 30px auto; font-size: 0.85rem; color: var(--text-dim); text-align: center; position: relative; z-index: 2;}
@@ -182,13 +172,32 @@
         .icon-btn { width: 45px; height: 45px; background: #1a0a2e; border: 1px solid #3c096c; border-radius: 10px; color: var(--purple-glow); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: 0.3s; cursor: none;}
         .icon-btn:hover { background: var(--purple-glow); color: white; }
 
+        /* --- MOBILE RESPONSIVE UPDATES --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .web-grid { grid-template-columns: 1fr; }
+            /* Adjust Hero Image */
+            .hero img { width: 100%; max-width: 450px; }
+            
+            /* Adjust Large Text */
+            .hero h1 { font-size: 3.5rem; letter-spacing: 5px; }
+            .hero h2 { font-size: 1.2rem; margin-top: -10px; }
+            .scroll-row { font-size: 3rem; letter-spacing: 8px; }
+            
+            /* Stacking Grids */
+            .grid-3, .grid-4, .web-grid { grid-template-columns: 1fr; }
             .web-bottom { width: 100%; }
-            .scroll-row { font-size: 4rem; }
+            
+            /* Responsive Experience Box */
+            .exp-box { flex-direction: column; text-align: center; }
+            .exp-img { width: 100%; height: auto; }
+            
+            /* UI Cleanup */
+            nav { gap: 12px; padding: 15px 5px; font-size: 0.65rem; }
+            .section-title { font-size: 1.8rem; }
+            
+            /* Disable custom cursor on mobile for better UX */
             #cursor, #cursor-follower { display: none; }
             body { cursor: auto; }
+            nav a, .card, .icon-btn { cursor: pointer; }
         }
     </style>
 </head>
@@ -315,38 +324,26 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
         <!-- Contact -->
         <section class="contact" id="contact">
             <h3 class="section-title">Contacts</h3>
-<div class="social-row">
-    <!-- Phone -->
-    <a href="tel:075457862" class="icon-btn">
-        <i class="fas fa-phone"></i>
-    </a>
-    
-    <!-- WhatsApp -->
-    <a href="https://wa.me/94758155175" class="icon-btn">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/dilshan-madumesha-89a6a6201/" class="icon-btn">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-    
-    <!-- Email -->
-    <a href="mailto:dilshanmadumesha175@gmail.com" class="icon-btn">
-        <i class="fas fa-envelope"></i>
-    </a>
-    
-    <!-- GitHub -->
-    <a href="https://github.com/dilshanM1" class="icon-btn">
-        <i class="fab fa-github"></i>
-    </a>
-    
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@pahasaratv" class="icon-btn">
-        <i class="fab fa-youtube"></i>
-    </a>
-</div>
-<!--            <p style="font-size: 0.75rem; color: #555;">dilshanmadumesha175@gmail.com</p> -->
+            <div class="social-row">
+                <a href="tel:075457862" class="icon-btn">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://wa.me/94758155175" class="icon-btn">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/dilshan-madumesha-89a6a6201/" class="icon-btn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:dilshanmadumesha175@gmail.com" class="icon-btn">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/dilshanM1" class="icon-btn">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.youtube.com/@pahasaratv" class="icon-btn">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
         </section>
     </div>
 
