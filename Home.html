@@ -21,9 +21,7 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
-            /* Smooth scrolling for internal links */
             scroll-behavior: smooth;
-            /* Hide default cursor for mouse animation */
             cursor: none;
         }
 
@@ -149,33 +147,55 @@
         .exp-text { flex: 2; }
         .exp-text h4 { color: var(--purple-glow); margin: 0; }
         .exp-text ul { font-size: 0.85rem; color: var(--text-dim); padding-left: 20px; }
-        .exp-img { flex: 1; min-width: 200px;  border-radius: 15px; height: 280px; }
+        .exp-img { flex: 1; min-width: 200px; border-radius: 15px; height: 280px; }
 
         /* Projects Grid */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
         
-        .card { background: #11031f; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; display: block; text-decoration: none; color: inherit; cursor: none; position: relative; }
+        .card { 
+            background: #11031f; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            text-align: center; 
+            padding-bottom: 20px; 
+            transition: 0.3s; 
+            display: block; 
+            text-decoration: none; 
+            color: inherit; 
+            cursor: none; 
+            position: relative; 
+        }
         .card:hover { transform: translateY(-10px); border: 1px solid var(--purple-glow); }
         .card img { width: 100%; height: auto; display: block; }
         .card-tag { background: #5a189a; font-size: 0.75rem; padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 15px 0 5px; }
         .card-desc { font-size: 0.75rem; color: var(--text-dim); padding: 0 15px; margin-bottom: 15px; }
         .card-meta { font-size: 0.7rem; color: var(--purple-glow); text-align: left; padding: 0 15px; }
 
-        /* Download Badge */
-        .download-badge {
+        /* Custom Bottom-Right Layout Container for Metadata and Badge */
+        .card-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-right: 0px;
+        }
+
+        /* Red Download Badge matching your image screenshot */
+        .download-badge-red {
             display: inline-flex;
             align-items: center;
-            gap: 5px;
-            background: linear-gradient(135deg, #2a0845, #6414e9);
-            border: 1px solid var(--purple-glow);
+            gap: 8px;
+            background-color: #e61919;
             color: #ffffff;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: 12px;
-            margin-top: 5px;
-            box-shadow: 0 0 10px rgba(157, 78, 221, 0.3);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px 6px 16px;
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+            border: 1px solid #ffffff;
+            border-right: none;
+            box-shadow: -2px 2px 10px rgba(230, 25, 25, 0.4);
+            margin-bottom: 5px;
         }
 
         /* Web Designs */
@@ -190,27 +210,16 @@
 
         /* --- MOBILE RESPONSIVE UPDATES --- */
         @media (max-width: 768px) {
-            /* Adjust Hero Image */
             .hero img { width: 100%; max-width: 450px; }
-            
-            /* Adjust Large Text */
             .hero h1 { font-size: 3.5rem; letter-spacing: 5px; }
             .hero h2 { font-size: 1.2rem; margin-top: -10px; }
             .scroll-row { font-size: 3rem; letter-spacing: 8px; }
-            
-            /* Stacking Grids */
             .grid-3, .grid-4, .web-grid { grid-template-columns: 1fr; }
             .web-bottom { width: 100%; }
-            
-            /* Responsive Experience Box */
             .exp-box { flex-direction: column; text-align: center; }
             .exp-img { width: 100%; height: auto; }
-            
-            /* UI Cleanup */
             nav { gap: 12px; padding: 15px 5px; font-size: 0.65rem; }
             .section-title { font-size: 1.8rem; }
-            
-            /* Disable custom cursor on mobile for better UX */
             #cursor, #cursor-follower { display: none; }
             body { cursor: auto; }
             nav a, .card, .icon-btn { cursor: pointer; }
@@ -280,12 +289,15 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
             <a href="https://play.google.com/store/apps/details?id=com.xendrio.braita" target="_blank" class="card">
                 <img src="img3.png" alt="Braita">
                 <div class="card-tag">Braita - Daily quiz challenge</div>
-                <div class="download-badge">
-                    <i class="fas fa-download"></i> 500+ Downloads
-                </div>
                 <p class="card-desc">A fun and engaging quiz app for all ages answer questions, test your knowledge, and earn exciting prizes!</p>
-                <div class="card-meta">
-                    • Languages: Flutter<br>• Published: Playstore<br>• Design: Figma
+                
+                <div class="card-bottom-row">
+                    <div class="card-meta">
+                        • Languages: Flutter<br>• Published: Playstore<br>• Design: Figma
+                    </div>
+                    <div class="download-badge-red">
+                        <i class="fas fa-download"></i> 500+ Downloads
+                    </div>
                 </div>
             </a>
             <a href="https://play.google.com/store/apps/details?id=com.xendrio.leave_today" target="_blank" class="card">
