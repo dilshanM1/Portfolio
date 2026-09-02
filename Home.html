@@ -172,30 +172,37 @@
         .card-desc { font-size: 0.75rem; color: var(--text-dim); padding: 0 15px; margin-bottom: 15px; }
         .card-meta { font-size: 0.7rem; color: var(--purple-glow); text-align: left; padding: 0 15px; }
 
-        /* Custom Bottom-Right Layout Container for Metadata and Badge */
+        /* Custom Bottom-Right Layout Container */
         .card-bottom-row {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            padding-right: 0px;
+            padding: 0 20px;
         }
 
-        /* Red Download Badge matching your image screenshot */
-        .download-badge-red {
-            display: inline-flex;
+        /* Minimal White Stacked Download Counter */
+        .download-display {
+            display: flex;
             align-items: center;
             gap: 8px;
-            background-color: #e61919;
-            color: #ffffff;
-            font-size: 0.75rem;
+            color: #909090b3;
+            text-align: left;
+        }
+        .download-display i {
+            font-size: 1.8rem;
+        }
+        .download-text-group {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .download-count {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+        .download-label {
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 6px 14px 6px 16px;
-            border-top-left-radius: 25px;
-            border-bottom-left-radius: 25px;
-            border: 1px solid #ffffff;
-            border-right: none;
-            box-shadow: -2px 2px 10px rgba(230, 25, 25, 0.4);
-            margin-bottom: 5px;
         }
 
         /* Web Designs */
@@ -292,11 +299,15 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
                 <p class="card-desc">A fun and engaging quiz app for all ages answer questions, test your knowledge, and earn exciting prizes!</p>
                 
                 <div class="card-bottom-row">
-                    <div class="card-meta">
+                    <div class="card-meta" style="padding: 0;">
                         • Languages: Flutter<br>• Published: Playstore<br>• Design: Figma
                     </div>
-                    <div class="download-badge-red">
-                        <i class="fas fa-download"></i> 500+ Downloads
+                    <div class="download-display">
+                        <i class="fas fa-download"></i>
+                        <div class="download-text-group">
+                            <span class="download-count">500+</span>
+                            <span class="download-label">Downloads</span>
+                        </div>
                     </div>
                 </div>
             </a>
