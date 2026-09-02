@@ -155,12 +155,28 @@
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
         
-        .card { background: #11031f; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; display: block; text-decoration: none; color: inherit; cursor: none;}
+        .card { background: #11031f; border-radius: 15px; overflow: hidden; text-align: center; padding-bottom: 20px; transition: 0.3s; display: block; text-decoration: none; color: inherit; cursor: none; position: relative; }
         .card:hover { transform: translateY(-10px); border: 1px solid var(--purple-glow); }
         .card img { width: 100%; height: auto; display: block; }
-        .card-tag { background: #5a189a; font-size: 0.75rem; padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 15px 0; }
+        .card-tag { background: #5a189a; font-size: 0.75rem; padding: 5px 15px; border-radius: 20px; display: inline-block; margin: 15px 0 5px; }
         .card-desc { font-size: 0.75rem; color: var(--text-dim); padding: 0 15px; margin-bottom: 15px; }
         .card-meta { font-size: 0.7rem; color: var(--purple-glow); text-align: left; padding: 0 15px; }
+
+        /* Download Badge */
+        .download-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: linear-gradient(135deg, #2a0845, #6414e9);
+            border: 1px solid var(--purple-glow);
+            color: #ffffff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 5px;
+            box-shadow: 0 0 10px rgba(157, 78, 221, 0.3);
+        }
 
         /* Web Designs */
         .web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
@@ -203,7 +219,6 @@
 </head>
 <body>
 
-    <!-- Mouse Animation Elements -->
     <div id="cursor"></div>
     <div id="cursor-follower"></div>
 
@@ -215,7 +230,6 @@
     </nav>
 
     <section class="hero" id="about-me">
-        <!-- Horizontal Scrolling Text Background -->
         <div class="scrolling-text-container">
             <div class="scroll-row scroll-left">
                 FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER FIGMA FLUTTER
@@ -242,7 +256,6 @@ This combination allows me to design solutions that are not only visually appeal
     </section>
 
     <div class="container">
-        <!-- Experience Section -->
         <h3 class="section-title" id="experience">Experience</h3>
         <div class="exp-box">
             <div class="exp-text">
@@ -259,15 +272,17 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
             <img src="img2.png" class="exp-img" alt="Experience Image">
         </div>
 
-        <!-- Published Apps -->
         <h3 class="section-title" id="projects">Projects</h3>
         <p class="section-subtitle">Published Mobile Apps</p>
         <p style="text-align: center; font-size: 0.85rem; color: var(--text-dim); max-width: 700px; margin: -20px auto 40px;">I have successfully published multiple applications on the Google Play Store, making them accessible to Android users worldwide. These apps include integrated Google Ads for effective monetization.</p>
         
         <div class="grid-3">
-            <a href="https://play.google.com/store/search?q=braita&c=apps" target="_blank" class="card">
+            <a href="https://play.google.com/store/apps/details?id=com.xendrio.braita" target="_blank" class="card">
                 <img src="img3.png" alt="Braita">
                 <div class="card-tag">Braita - Daily quiz challenge</div>
+                <div class="download-badge">
+                    <i class="fas fa-download"></i> 500+ Downloads
+                </div>
                 <p class="card-desc">A fun and engaging quiz app for all ages answer questions, test your knowledge, and earn exciting prizes!</p>
                 <div class="card-meta">
                     • Languages: Flutter<br>• Published: Playstore<br>• Design: Figma
@@ -291,7 +306,6 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
             </a>
         </div>
 
-        <!-- App Designs -->
         <h3 class="section-title" style="font-size: 1.5rem; margin-top: 80px;">Mobile App Designs</h3>
         <p class="section-subtitle">These are some of my mobile app UI/UX designs developed using Figma, showcasing my design skills and creativity in building user-friendly interfaces.</p>
         
@@ -303,7 +317,6 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
         </div>
 
 
-        <!-- Web Site Designs -->
         <h3 class="section-title" style="font-size: 1.5rem; margin-top: 80px;">Web Site Designs</h3>
         <p class="section-subtitle">These are some of my website UI/UX designs developed using Figma, showcasing my design skills and creativity in building user-friendly interfaces.</p>
         
@@ -321,7 +334,6 @@ Developed mobile applications using Android Studio, Firebase, and Flutter</li>
             </a>
         </div>
 
-        <!-- Contact -->
         <section class="contact" id="contact">
             <h3 class="section-title">Contacts</h3>
             <div class="social-row">
